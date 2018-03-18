@@ -1,7 +1,7 @@
 <!-- Breadcrumbs-->
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
-        <a href="<?= ROOT_URL ?>profile">Usuários</a>
+        <a href="<?= ROOT_URL ?>profile">Perfil</a>
     </li>
 </ol>
 
@@ -10,7 +10,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-md-8">
-                <i class="fa fa-table"></i> Data Table Example
+                <i class="fa fa-table"></i> Lista de Perfis
             </div>                
             <div class="col-md-4">
                 <input class="form-control" id="search" type="text" placeholder="Buscar pelo perfil...">
