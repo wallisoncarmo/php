@@ -7,7 +7,7 @@ define("MY_DRIVER", "mysql");
 if ($_SERVER['SERVER_NAME'] == "localhost" || $_SERVER['SERVER_NAME'] == "127.0.0.1") {  
     
     //CONFIGURAÇÃO DO AMBIENTE DE LOCAL    
-    define("ROOT_URL", "http://" . $_SERVER["HTTP_HOST"] . "/php_arquitetura/");
+    define("ROOT_URL", "http://" . $_SERVER["HTTP_HOST"] . "/php/");
 
     // DEFINIÇÃO DO BANDO DE DADOS
     define("MY_DB_HOST", "127.0.0.1");
