@@ -59,23 +59,4 @@ class Profiles {
         $this->update = $update;
     }
 
-    /**
-     * Aqui deve se informar os campos e seus detalhes
-     * [tipo] Dependendo do que foi checkado será validado pelo 
-     * seu formato podendo ser [string][integer][boolean][cpf][cnpj][email][date]
-     * [obrigatorio] = se o campo é obrigatorio
-     * [max] quantidade maxima de caracter
-     * [min] quantidade minima de caracter
-     * [key] informa se ele é chave primaria
-     */
-    function getCampos() {
-        return [
-            'id' => ['tipo' => 'integer', 'obrigatorio' => true, 'key' => true],
-            'profile' => ['tipo' => 'string', 'max' => 250, 'min' => 5, 'obrigatorio' => true],
-            'create' => ['tipo' => 'string', 'max' => 20, 'min' => 10, 'obrigatorio' => false],
-            'update' => ['tipo' => 'string', 'max' => 20, 'min' => 10, 'obrigatorio' => false],
-            'active' => ['tipo' => 'boolean', 'obrigatorio' => false],
-        ];
-    }
-
 }
