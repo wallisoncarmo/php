@@ -34,7 +34,7 @@ abstract class AbstractController {
      */
     protected function returnView($viewmodel, $fullview) {
         // remove parametos desnecessários e  troca a barras
-        $view = strtolower(str_replace(['\\', '/controllers','Controller','controller'], ["/", '', '', ''], 'views/' . get_class($this) . '/' . $this->action . '.php'));
+        $view = strtolower(str_replace(['\\', '/controllers', 'Controller', 'controller'], ["/", '', '', ''], 'views/' . get_class($this) . '/' . $this->action . '.php'));
 
         if ($fullview) {
             require('views/template.php');
@@ -77,6 +77,18 @@ abstract class AbstractController {
             return 'error';
         } else {
             return 'success';
+        }
+    }
+
+    /**
+     *  valida se o usuário possui permissao a essa funcionalidade caso n tenha é enviado para pagina de erro
+     * @param array $perfil Recebe uma lista de perfil 
+     */
+    protected function validaPermissao($perfil) {
+
+        // verifica o codigo
+        if (!in_array($_SESSION['user']['profile_id'], $perfil)) {
+            header('Location: ' . ROOT_URL . 'error/permission');
         }
     }
 

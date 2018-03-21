@@ -21,5 +21,11 @@ class ErrorController extends abstractcontroller {
     protected function notfound() {
         $this->returnView([], false);
     }
+    /**
+     * Exibe a view de erros para páginas não encontrada
+     */
+    protected function permission() {
+        $this->returnView([], false);
+    }
 
 }

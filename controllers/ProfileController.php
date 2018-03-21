@@ -8,8 +8,6 @@
 namespace controllers;
 
 use controllers\AbstractController;
-
-
 use classes\Profiles;
 use models\ProfilesModel;
 use config\message\Message;
@@ -20,8 +18,7 @@ use config\message\Message;
  */
 class ProfileController extends AbstractController {
 
-    
-     protected function index() {
+    protected function index() {
         $res = array();
 
         $obj = new Profiles();
@@ -36,9 +33,12 @@ class ProfileController extends AbstractController {
         }
 
         $this->returnView($res, true);
-    }   
-  
-     protected function form() {
+    }
+
+    protected function form() {
+
+        $this->validaPermissao([ADMINISTRADOR_ID]);
+
         $res = array();
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -50,7 +50,7 @@ class ProfileController extends AbstractController {
             unset($post['submit']);
             $obj = new Profiles();
 
-            $obj->setProfile(trim($post['profile'])); 
+            $obj->setProfile(trim($post['profile']));
             $obj->setActive(1);
 
             $viewmodel = new ProfilesModel();
@@ -66,7 +66,7 @@ class ProfileController extends AbstractController {
             if ($res["code"] !== OK_CODE) {
                 Message::setmessage($res['msg'], 'error');
             } else {
-                Message::setmessage("O Usuário foi salvo", 'success');                
+                Message::setmessage("O Usuário foi salvo", 'success');
             }
         }
 
@@ -84,31 +84,29 @@ class ProfileController extends AbstractController {
 
         $this->returnView($res, true);
     }
-    
-    
+
     /**
      * Tela inicial da Home
      */
     protected function jsonDelete() {
         $res = array();
 
-        $id = $this->request['id'];        
-        
-        $viewmodel = new ProfilesModel();        
-        
+        $id = $this->request['id'];
+
+        $viewmodel = new ProfilesModel();
+
         // verifica se o id existe
-        if ($id) {            
-            $result = $viewmodel->delete($id);            
+        if ($id) {
+            $result = $viewmodel->delete($id);
             // verifica se ocorreu algum problema
             if ($result["code"] !== OK_CODE) {
-                $this->returnJson(['data' => $result['msg']], NOT_FOUND_CODE);                
+                $this->returnJson(['data' => $result['msg']], NOT_FOUND_CODE);
                 return;
             } else {
                 $res = $id;
             }
-            
+
             $this->returnJson(['data' => $res], $result["code"]);
-            
         } else {
             $this->returnJson(['data' => NOT_FOUND_ID], NOT_FOUND_CODE);
         }
